@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déméter - Écosystème Anti-Gaspillage Agricole</title>
+    <style>
+        :root {
+            --primary: #1b4332;
+            --accent: #2d6a4f;
+            --light-bg: #f8f9fa;
+            --text-main: #212529;
+            --text-muted: #6c757d;
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px 16px;
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 600px;
+            margin: 30px auto 20px auto;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .description {
+            font-size: 1.05rem;
+            color: #495057;
+            margin-bottom: 28px;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .disclaimer {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Common Section Styles */
+        .section-card {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 24px 16px;
+            background-color: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        /* Problem Section */
+        .stat-card {
+            background-color: #fdfbf7;
+            border-left: 4px solid #e63946;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .stat-number {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #d62828;
+            margin-bottom: 4px;
+        }
+
+        .stat-text {
+            font-size: 0.95rem;
+            color: #333333;
+        }
+
+        /* Solution Section */
+        .step-card {
+            background-color: #f4f9f5;
+            border-left: 4px solid var(--accent);
+            padding: 18px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .step-badge {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+
+        .step-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .step-text {
+            font-size: 0.95rem;
+            color: #333333;
+        }
+
+        /* Field Section */
+        .field-card {
+            background-color: #fafafa;
+            border: 1px solid #e9ecef;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .field-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .field-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .field-text {
+            font-size: 0.95rem;
+            color: #495057;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            max-width: 600px;
+            margin: 40px auto 20px auto;
+            padding: 28px 20px;
+            background-color: var(--primary);
+            color: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-title {
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .cta-subtitle {
+            font-size: 0.95rem;
+            color: #d8f3dc;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #f8f9fa;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1px solid #2d6a4f;
+            background-color: #ffffff;
+            font-size: 1rem;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 14px 20px;
+            background-color: #52b788;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HERO -->
+    <section class="hero">
+        <span class="badge">Phase d'expérimentation</span>
+        <h1>Déméter</h1>
+        <p class="description">
+            Déméter est un écosystème créé pour éviter le gaspillage alimentaire. Notre point d'entrée est une application qui permettra de lier producteurs maraîchers et acheteurs professionnels au bon moment pour préserver la valeur des produits.
+        </p>
+        <div class="cta-group">
+            <a href="#contact" class="btn btn-primary">Rejoindre le réseau</a>
+        </div>
+        <p class="disclaimer">Expérimentation en cours avec des fermes et acheteurs locaux.</p>
+    </section>
+
+    <!-- 2. LE PROBLÈME -->
+    <section class="section-card">
+        <h2 class="section-title">Le constat sur le terrain</h2>
+        <p class="section-subtitle">Pourquoi tant de récoltes perdent-elles leur valeur ?</p>
+
+        <div class="stat-card">
+            <div class="stat-number">46 Milliards FCFA</div>
+            <p class="stat-text">C'est l'estimation des pertes annuelles de fruits et légumes au Togo selon le PNUD, principalement en raison des défis de conservation.</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-number">42 % à 90 %</div>
+            <p class="stat-text">De pertes de tomates observées dans la région des Savanes : 42 % pendant la grande saison et jusqu'à 90 % pendant la petite saison.</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-number">Une course contre le temps</div>
+            <p class="stat-text">Aujourd'hui, une fois récolté, un produit doit rapidement trouver un acheteur, être transporté et trié. Sans coordination préalable, la valeur s'évapore.</p>
+        </div>
+    </section>
+
+    <!-- 3. LA SOLUTION -->
+    <section class="section-card">
+        <h2 class="section-title">Notre démarche</h2>
+        <p class="section-subtitle">L'application comme point d'entrée d'un écosystème global.</p>
+
+        <div class="step-card">
+            <span class="step-badge">1. Première démarche</span>
+            <h3 class="step-title">Une application de mise en relation précoce</h3>
+            <p class="step-text">L'agriculteur signale sa récolte 5 jours à l'avance. Les restaurants, transformateurs et revendeurs réservent les produits au bon moment.</p>
+        </div>
+
+        <div class="step-card">
+            <span class="step-badge">2. La donnée du terrain</span>
+            <h3 class="step-title">Mesurer pour comprendre</h3>
+            <p class="step-text">L'application permet d'analyser les volumes réels, la demande locale et de cartographier précisément où se situent les pertes.</p>
+        </div>
+
+        <div class="step-card">
+            <span class="step-badge">3. Infrastructures ciblées</span>
+            <h3 class="step-title">Tri, logistique et chambres froides</h3>
+            <p class="step-text">Avec le temps, ces données guideront l'installation progressive du tri, de la logistique adaptative et de chambres froides là où elles sont indispensables.</p>
+        </div>
+    </section>
+
+    <!-- 4. TERRAIN -->
+    <section class="section-card">
+        <h2 class="section-title">Ancrage sur le terrain</h2>
+        <p class="section-subtitle">Passer progressivement de l'expérimentation à la preuve.</p>
+
+        <div class="field-card">
+            <span class="field-tag">Phase de test</span>
+            <h3 class="field-title">Validation des hypothèses avec les acteurs locaux</h3>
+            <p class="field-text">Nous expérimentons actuellement notre fonctionnement avec 4 fermes pilotes, ainsi qu'un premier réseau de restaurants et de transformateurs pour adapter l'outil à leurs besoins quotidiens.</p>
+        </div>
+
+        <div class="field-card">
+            <span class="field-tag">Alignement stratégique</span>
+            <h3 class="field-title">Répondre à un besoin reconnu</h3>
+            <p class="field-text">Notre action s'inscrit dans la continuité des travaux d'amélioration de la chaîne d'approvisionnement maraîchère et d'évaluation des besoins en chaîne du froid engagés au Togo.</p>
+        </div>
+
+        <div class="field-card">
+            <span class="field-tag">Objectif Pilote</span>
+            <h3 class="field-title">Mesurer les premières quantités sauvées</h3>
+            <p class="field-text">L'enjeu immédiat est de prouver ce qui fonctionne, de mesurer précisément le volume de récoltes préservées et d'ajuster l'infrastructure en conséquence.</p>
+        </div>
+    </section>
+
+    <!-- 5. FORMULAIRE DE CONTACT -->
+    <section class="cta-section" id="contact">
+        <h2 class="cta-title">Rejoignez Déméter</h2>
+        <p class="cta-subtitle">
+            Producteurs, acheteurs ou partenaires : rejoignez la phase pilote et participons ensemble à l'autonomisation alimentaire avec un objectif clair : <strong>réduire d'au moins 25 % les pertes post-récolte</strong>.
+        </p>
+
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Nom complet</label>
+                <input type="text" id="name" name="name" placeholder="Votre nom et prénom" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Numéro Téléphone / WhatsApp</label>
+                <input type="tel" id="phone" name="phone" placeholder="+228 90 00 00 00" required>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Vous êtes :</label>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Sélectionnez votre profil</option>
+                    <option value="producteur">Producteur maraîcher</option>
+                    <option value="restaurant">Restaurant / Hôtel</option>
+                    <option value="transformateur">Transformateur agroalimentaire</option>
+                    <option value="revendeur">Revendeur / Marché</option>
+                    <option value="partenaire">Partenaire / Investisseur</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">Rejoindre l'expérimentation</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© Déméter — Préserver la valeur de nos récoltes.</p>
+    </footer>
+
+</body>
+  </html>
