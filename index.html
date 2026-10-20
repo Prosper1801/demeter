@@ -259,6 +259,11 @@
             margin-top: 20px;
         }
 
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
         footer {
             text-align: center;
             font-size: 0.85rem;
@@ -359,7 +364,7 @@
             Producteurs, acheteurs ou partenaires : rejoignez la phase pilote et participons ensemble à l'autonomisation alimentaire avec un objectif clair : <strong>réduire d'au moins 25 % les pertes post-récolte</strong>.
         </p>
 
-        <form action="#" method="POST">
+        <form id="demeter-form">
             <div class="form-group">
                 <label for="name">Nom complet</label>
                 <input type="text" id="name" name="name" placeholder="Votre nom et prénom" required>
@@ -390,5 +395,37 @@
         <p>© Déméter — Préserver la valeur de nos récoltes.</p>
     </footer>
 
+    <!-- ENVOI DU FORMULAIRE VERS GOOGLE SHEETS -->
+    <script>
+        // Colle ici l'URL de ton déploiement Apps Script (celle qui finit par /exec)
+        const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbwErH3SkDBIZqycy-3PrceCW6C7SaFxromgFYcmmqRnxw6Cjt-fLxb5Z5bs5ywTg6E5/exec";
+
+        const form = document.getElementById("demeter-form");
+        const btn = form.querySelector(".btn-submit");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.textContent = "Envoi en cours...";
+
+            try {
+                await fetch(URL_SCRIPT, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: new URLSearchParams(new FormData(form))
+                });
+                form.reset();
+                btn.textContent = "Merci ! Nous vous contactons très vite.";
+            } catch (err) {
+                btn.textContent = "Erreur, réessayez";
+            }
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.textContent = "Rejoindre l'expérimentation";
+            }, 4000);
+        });
+    </script>
+
 </body>
-  </html>
+</html>
